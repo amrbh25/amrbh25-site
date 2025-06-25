@@ -1,243 +1,206 @@
-// Ultra-Advanced Mobile Navigation Toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
-    
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-        if (hamburger && navMenu) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    }));
+/* =========================================================
+   AMRBH25 LLC — Front-end interactions
+   Last update: 2025-06-25
+   ========================================================= */
+
+/* ---------- Ultra-Advanced Mobile Navigation Toggle ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu   = document.querySelector('.nav-menu');
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    /* Fecha menu ao clicar em qualquer link */
+    document.querySelectorAll('.nav-link').forEach(link =>
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      })
+    );
+  }
 });
 
-// Ultra-Premium Scroll Effects
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }
+/* ---------- Ultra-Premium Scroll Effects ---------- */
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  navbar.classList.toggle('scrolled', window.scrollY > 100);
 });
 
-// Ultra-Sophisticated Smooth Scrolling
+/* ---------- Ultra-Sophisticated Smooth Scrolling ---------- */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
+  anchor.addEventListener('click', e => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 });
 
-// Ultra-Premium Active Navigation Highlighting
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
+/* ---------- Active Navigation Highlighting ---------- */
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  let current = '';
+
+  sections.forEach(section => {
+    if (scrollY >= section.offsetTop - 200)
+      current = section.id;
+  });
+
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+  });
 });
 
-// Ultra-Premium Floating Call-to-Action
+/* ---------- Floating Call-to-Action ---------- */
 function createFloatingCTA() {
-    const floatingCTA = document.createElement('div');
-    floatingCTA.className = 'floating-cta';
-    floatingCTA.innerHTML = `
-        <div class="floating-cta-content">
-            <span class="floating-cta-text">Ready to Start?</span>
-            <span class="floating-cta-subtext">Contact our team</span>
-        </div>
-        <i class="fas fa-arrow-right floating-cta-icon"></i>
-    `;
-    
-    floatingCTA.addEventListener('click', function() {
-        document.querySelector('#contact').scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    });
-    
-    document.body.appendChild(floatingCTA);
-    
-    // Show/hide based on scroll position
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 500) {
-            floatingCTA.classList.add('visible');
-        } else {
-            floatingCTA.classList.remove('visible');
-        }
-    });
+  const cta = document.createElement('div');
+  cta.className = 'floating-cta';
+  cta.innerHTML = `
+    <div class="floating-cta-content">
+      <span class="floating-cta-text">Ready to Start?</span>
+      <span class="floating-cta-subtext">Contact our team</span>
+    </div>
+    <i class="fas fa-arrow-right floating-cta-icon"></i>
+  `;
+  cta.addEventListener('click', () => {
+    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+  });
+  document.body.appendChild(cta);
+
+  window.addEventListener('scroll', () => {
+    cta.classList.toggle('visible', window.scrollY > 500);
+  });
 }
 
-// Ultra-Premium Contact Form System
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            
-            // Show loading state
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            // Collect form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                organization: document.getElementById('organization').value,
-                inquiry: document.getElementById('inquiry').value,
-                message: document.getElementById('message').value
-            };
-            
-            try {
-                const response = await fetch('/api/send-email', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showNotification('Thank you! Your message has been sent successfully. We will get back to you soon.', 'success');
-                    contactForm.reset();
-                } else {
-                    showNotification(result.message || 'An error occurred. Please try again.', 'error');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('An error occurred. Please try again later.', 'error');
-            } finally {
-                // Reset button state
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }
-        });
-    }
-});
+/* ---------- Contact Form (Formspree integration) ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm   = document.getElementById('contactForm');
+  const FORMSPREE_URL = 'https://formspree.io/f/mdkzpawq';
 
-// Ultra-Sophisticated Notification System
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
-            <span>${message}</span>
-        </div>
-        <button class="notification-close">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Show notification
-    setTimeout(() => notification.classList.add('show'), 100);
-    
-    // Auto-hide after 5 seconds
-    const autoHide = setTimeout(() => {
-        hideNotification(notification);
-    }, 5000);
-    
-    // Close button functionality
-    notification.querySelector('.notification-close').addEventListener('click', () => {
-        clearTimeout(autoHide);
-        hideNotification(notification);
-    });
-}
+  if (!contactForm) return;
 
-function hideNotification(notification) {
-    notification.classList.remove('show');
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-        }
-    }, 300);
-}
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-// Ultra-Premium Form Validation
-function validateForm(formData) {
-    const errors = [];
-    
-    if (!formData.name.trim()) errors.push('Name is required');
-    if (!formData.email.trim()) errors.push('Email is required');
-    if (!formData.phone.trim()) errors.push('Phone is required');
-    if (!formData.inquiry) errors.push('Inquiry type is required');
-    if (!formData.message.trim()) errors.push('Message is required');
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (formData.email && !emailRegex.test(formData.email)) {
-        errors.push('Please enter a valid email address');
-    }
-    
-    // Phone validation (basic)
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    if (formData.phone && !phoneRegex.test(formData.phone.replace(/[\s\-\(\)]/g, ''))) {
-        errors.push('Please enter a valid phone number');
-    }
-    
-    return errors;
-}
-
-// Initialize Ultra-Sophisticated Features
-document.addEventListener('DOMContentLoaded', function() {
-    createFloatingCTA();
-    
-    // Ultra-premium scroll reveal animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+    /* ----- Gather & validate data ----- */
+    const formData = {
+      name:         contactForm.querySelector('[name="name"]').value.trim(),
+      email:        contactForm.querySelector('[name="email"]').value.trim(),
+      phone:        contactForm.querySelector('[name="phone"]').value.trim(),
+      organization: contactForm.querySelector('[name="organization"]').value.trim(),
+      inquiry:      contactForm.querySelector('[name="inquiry"]').value,
+      message:      contactForm.querySelector('[name="message"]').value.trim()
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all sections and cards
-    document.querySelectorAll('section, .service-card, .partnership-category').forEach(el => {
-        observer.observe(el);
-    });
+
+    const errors = validateForm(formData);
+    if (errors.length) {
+      showNotification(errors.join('<br>'), 'error');
+      return;
+    }
+
+    /* ----- UI: loading state ----- */
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+
+    /* ----- Send to Formspree ----- */
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method : 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept'      : 'application/json'
+        },
+        body   : JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        showNotification('Thank you! Your message has been sent successfully.', 'success');
+        contactForm.reset();
+      } else {
+        const data = await response.json().catch(() => ({}));
+        showNotification(data.error || 'An error occurred. Please try again later.', 'error');
+      }
+    } catch (err) {
+      console.error(err);
+      showNotification('Network error. Please try again later.', 'error');
+    } finally {
+      submitButton.textContent = originalText;
+      submitButton.disabled = false;
+    }
+  });
 });
 
+/* ---------- Notification System ---------- */
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `
+    <div class="notification-content">
+      <i class="fas ${
+        type === 'success' ? 'fa-check-circle'
+      : type === 'error'   ? 'fa-exclamation-circle'
+      :                      'fa-info-circle'}"></i>
+      <span>${message}</span>
+    </div>
+    <button class="notification-close"><i class="fas fa-times"></i></button>
+  `;
+  document.body.appendChild(notification);
+
+  /* Show */
+  setTimeout(() => notification.classList.add('show'), 20);
+
+  /* Auto-hide */
+  const autoHide = setTimeout(() => hideNotification(notification), 5000);
+
+  /* Manual close */
+  notification.querySelector('.notification-close').addEventListener('click', () => {
+    clearTimeout(autoHide);
+    hideNotification(notification);
+  });
+}
+function hideNotification(el) {
+  el.classList.remove('show');
+  setTimeout(() => el.remove(), 300);
+}
+
+/* ---------- Basic Form Validation ---------- */
+function validateForm(f) {
+  const errors = [];
+  if (!f.name)        errors.push('Name is required.');
+  if (!f.email)       errors.push('Email is required.');
+  if (!f.inquiry)     errors.push('Inquiry type is required.');
+  if (!f.message)     errors.push('Message is required.');
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (f.email && !emailRegex.test(f.email)) errors.push('Invalid email address.');
+
+  const phoneRegex = /^[\+]?[1-9]\d{0,15}$/;
+  if (f.phone && !phoneRegex.test(f.phone.replace(/[\s\-().]/g, '')))
+    errors.push('Invalid phone number.');
+
+  return errors;
+}
+
+/* ---------- Initialise extras ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  createFloatingCTA();
+
+  /* Scroll-reveal animation */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('animate-in');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('section, .service-card, .partnership-category')
+          .forEach(el => observer.observe(el));
+});
