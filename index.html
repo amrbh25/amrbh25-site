@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AMRBH25 LLC - Clinical Research & Precision Nutrition Solutions</title>
+  <title>AMRBH25 LLC – Clinical Research & Precision Nutrition Solutions</title>
   <meta name="description" content="AMRBH25 LLC is a US-based clinical research and consulting company specializing in metabolic health, obesity management, and precision nutrition solutions." />
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <!-- Navbar -->
+  <!-- ========= NAV ========= -->
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-logo"><h2>AMRBH25 LLC</h2></div>
@@ -27,7 +27,7 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- ========= HERO ========= -->
   <section id="home" class="hero">
     <div class="hero-container">
       <div class="hero-content">
@@ -44,20 +44,21 @@
     </div>
   </section>
 
-  <!-- About -->
+  <!-- ========= ABOUT ========= -->
   <section id="about" class="about">
     <div class="container">
       <div class="section-header">
         <h2>About AMRBH25 LLC</h2>
         <p class="section-subtitle">Leading the future of metabolic health research and precision nutrition</p>
       </div>
+
       <div class="about-content">
         <div class="about-text">
           <h3>Our Mission</h3>
           <p>AMRBH25 LLC is a Florida-based clinical research and consulting company dedicated to advancing metabolic health through innovative research, precision nutrition protocols, and evidence-based therapeutic solutions.</p>
 
           <h3>Scientific Excellence</h3>
-          <p>We employ rigorous research methodologies, multidisciplinary collaboration, and strict regulatory compliance to translate cutting-edge science into practical solutions.</p>
+          <p>We employ rigorous methodologies, multidisciplinary collaboration, and strict regulatory compliance to translate cutting-edge science into practical solutions.</p>
 
           <h3>Regulatory Compliance</h3>
           <p>AMRBH25 LLC operates in full alignment with FDA guidelines, HIPAA requirements, and Florida state health regulations, ensuring safety, efficacy, and ethical conduct in all projects.</p>
@@ -66,21 +67,56 @@
     </div>
   </section>
 
-  <!-- Services -->
+  <!-- ========= SERVICES ========= -->
   <section id="services" class="services">
     <div class="container">
       <div class="section-header">
         <h2>Our Services</h2>
         <p class="section-subtitle">Comprehensive solutions for metabolic health and clinical research</p>
       </div>
+
       <div class="services-grid">
-        <!-- six service cards (mesmo conteúdo) -->
-        <!-- ... -->
+        <!-- 6 service cards (conteúdo preservado) -->
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Clinical Research Coordination</h3>
+          <p>Design, oversight, and management of multicenter clinical studies focusing on metabolic health, GLP-1 receptor agonists, and related interventions.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-dna"></i></div>
+          <h3>Precision Nutrition Protocols</h3>
+          <p>Individualized nutrition and lifestyle programs using advanced anthropometry (ISAK) and genetic data analysis.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-user-md"></i></div>
+          <h3>Professional Training</h3>
+          <p>Training and supervision for healthcare professionals in metabolic monitoring, nutrition assessment, and patient engagement.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Digital Health Solutions</h3>
+          <p>Apps, dashboards, and data-collection platforms that enhance patient engagement and progress tracking.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-book-open"></i></div>
+          <h3>Scientific Communication</h3>
+          <p>Publication of findings, preparation of educational materials, and representation at scientific conferences.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Regulatory & Compliance Consulting</h3>
+          <p>Guidance on FDA, HIPAA, and state regulations to ensure full compliance in all projects.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Leadership -->
+  <!-- ========= LEADERSHIP ========= -->
   <section id="leadership" class="leadership">
     <div class="container">
       <div class="section-header">
@@ -96,7 +132,7 @@
     </div>
   </section>
 
-  <!-- Partnerships -->
+  <!-- ========= PARTNERSHIPS ========= -->
   <section id="partnerships" class="partnerships">
     <div class="container">
       <div class="section-header">
@@ -104,13 +140,27 @@
         <p class="section-subtitle">Collaborating with leading institutions to advance metabolic health research</p>
       </div>
       <div class="partnerships-content">
-        <!-- partnership categories -->
-        <!-- ... -->
+        <div class="partnership-category">
+          <h3>Medical Clinics</h3>
+          <p>Evidence-based metabolic health protocols, staff training, and outcome measurement.</p>
+        </div>
+        <div class="partnership-category">
+          <h3>Healthcare Professionals</h3>
+          <p>Physicians, dietitians, PAs, and health coaches committed to data-driven interventions.</p>
+        </div>
+        <div class="partnership-category">
+          <h3>Research Institutions</h3>
+          <p>Academic collaborations to conduct groundbreaking studies in metabolic health.</p>
+        </div>
+        <div class="partnership-category">
+          <h3>Technology Partners</h3>
+          <p>Alliances with digital-health companies for patient monitoring and data collection.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- ========= CONTACT ========= -->
   <section id="contact" class="contact">
     <div class="container">
       <div class="section-header">
@@ -120,8 +170,8 @@
 
       <div class="contact-content">
         <div class="contact-form">
-          <!-- Formspree integration -->
-          <form action="https://formspree.io/f/mdkzpawq" method="POST">
+          <!-- ✅ Formspree endpoint -->
+          <form id="contactForm" action="https://formspree.io/f/mdkzpawq" method="POST">
             <input type="hidden" name="_subject" value="New message from AMRBH25 website" />
 
             <div class="form-group">
@@ -157,17 +207,51 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ========= FOOTER ========= -->
   <footer class="footer">
     <div class="container">
-      <!-- footer content -->
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>AMRBH25 LLC</h3>
+          <p>Advancing metabolic health through scientific innovation, precision nutrition, and evidence-based therapeutic solutions.</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Clinical Research</a></li>
+            <li><a href="#services">Precision Nutrition</a></li>
+            <li><a href="#services">Professional Training</a></li>
+            <li><a href="#services">Digital Health Solutions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#partnerships">Partnerships</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#compliance">Compliance</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2025 AMRBH25 LLC. All rights reserved. | Licensed in Florida, USA</p>
     </div>
   </footer>
 
-  <!-- Se não houver mais scripts específicos, você pode remover esta linha -->
-  <!-- <script src="script.js"></script> -->
+  <!-- mantém o script para hambúrguer e toast, agora com fetch → Formspree -->
+  <script src="script.js"></script>
 </body>
 </html>
